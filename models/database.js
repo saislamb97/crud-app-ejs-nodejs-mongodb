@@ -3,9 +3,6 @@ const schema = mongoose.Schema
 require('dotenv/config')
 const dburl = process.env.DATABASE_URL
 
-
-mongoose.set('strictQuery', false)
-
 mongoose.connect(dburl)
 
 const dbschema = new schema({
@@ -14,4 +11,4 @@ const dbschema = new schema({
   password: String
 })
 
-module.exports = mongoose.model('userinfo', dbschema)
+module.exports = mongoose.model('userdata', dbschema)

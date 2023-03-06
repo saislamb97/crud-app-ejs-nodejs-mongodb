@@ -9,18 +9,18 @@
 </head>
 <body>
     <div class="container">
-        <form action="/update/<%=userinfo._id %>" method="post">
+        <form action="/update/<%=userdata._id %>" method="post">
             <div class="form-group">
                 <label for="name"><b>User Name: </b></label>
-                <input type="text" name="name" id="name" class="form-control" value="<%=userinfo.name %>">
+                <input type="text" name="name" id="name" class="form-control" value="<%=userdata.name %>">
             </div>
             <div class="form-group">
                 <label for="email"><b>User Email: </b></label>
-                <input type="email" name="email" id="email" class="form-control" value="<%=userinfo.email %>">
+                <input type="email" name="email" id="email" class="form-control" value="<%=userdata.email %>">
             </div>
             <div class="form-group">
                 <label for="password"><b>User Password: </b></label>
-                <input type="password" name="password" id="password" class="form-control" value="<%=userinfo.password %>">
+                <input type="password" name="password" id="password" class="form-control" value="<%=userdata.password %>">
             </div>
             <input type="submit" name="update" value="Update" class="btn btn-success">
         </form>

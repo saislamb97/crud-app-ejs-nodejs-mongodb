@@ -27,34 +27,43 @@ app.post('/formpost', (req, res) => {
     password: req.body.password
   })
 
-  formdata.save((err) => { res.send("Data has been sent successfully") })
+  formdata.save().then(data => {
+        res.send(data)
+    }).catch((err)=>{
+        res.json({message:err})
+    })
 
 })
 
 
 app.get('/show', (req, res) => {
-  formschema.find((err, result) => {
-    res.render('show', { userinfo: result })
+  dbschema.find().then(result=>{
+    res.render('show', { userdata: result })
+  }).catch((err)=>{
+    
+    res.json({message:err})
   })
 })
 
 app.get('/delete/:id', async (req, res) => {
-  await formschema.findByIdAndDelete(req.params.id)
+  await dbschema.findByIdAndDelete(req.params.id)
   res.redirect('/show')
 
 })
 
 app.get('/edit/:id', (req, res) => {
-  formschema.findById(req.params.id, (err, result) => {
-    res.render('edit', { userinfo: result })
+  dbschema.findById(req.params.id).then(result=>{
+    res.render('edit', { userdata: result })
+  }).catch((err)=> {
+    res.json({message:err})
   })
 })
 
 
 app.post('/update/:id', async (req, res) => {
 
-  await formschema.findByIdAndUpdate(req.params.id, req.body)
+  await dbschema.findByIdAndUpdate(req.params.id, req.body)
   res.redirect('/show')
 })
 
-app.listen(3589, () => { console.log("Server is running at http://localhost:3500") })
+app.listen(6000, () => { console.log("Server is running at http://localhost:6000") })
