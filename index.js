@@ -1,7 +1,16 @@
 const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
+const dotenv = require('dotenv')
+const mongoose = require('mongoose')
 const dbschema = require('./models/database')
+dotenv.config();
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect(process.env.MONGO_URL);
+}
 
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
@@ -66,4 +75,4 @@ app.post('/update/:id', async (req, res) => {
   res.redirect('/show')
 })
 
-app.listen(6000, () => { console.log("Server is running at http://localhost:6000") })
+app.listen(6450, () => { console.log("Server is running at http://localhost:6450") })
